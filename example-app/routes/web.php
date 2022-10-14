@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,16 +27,6 @@ Route::get('/', function () {
 //Parameters
 Route::get('/bonjour/{name}', function ($name) {
     return "Nom: " .$name;
-});
-
-//Parameters
-Route::get('/user-mandatory/{name}', function ($name) {
-    return "Nom: " .$name;
-});
-
-//Parameters mandatory
-Route::get('/user-mandatory/{name}', function ($name = "Louis") {
-    return $name;
 });
 
 //Parameters mandatory
@@ -62,8 +54,24 @@ Route::get('/user-bis/{name}', function ($name) {
 //options($uri, $callback); (get headers spec)
 
 //Allow to generate all actions read/create/delete/update/ des users
-Route::ressource("users", UserController::class);
+Route::resource("users", UserController::class);
 
 //Redirect
 Route::redirect("/ici", "/la");
 Route::redirect("/test1", "/test", 301);
+
+//Route::permanentRedirect('/test1', '/test');
+
+//Artisans commandes
+//List routes
+//php artisan route:list
+
+//Routes with name
+Route::get('/user/profil', function(){
+    return  "profil";
+})->name ("profile");
+
+//Redirection with route which have name
+Route::get('/test-user', function(){
+    return redirect()->route('profile');
+});
