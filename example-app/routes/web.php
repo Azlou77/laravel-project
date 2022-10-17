@@ -21,7 +21,7 @@ Route::get('/test', function () {
 
 //Default: return view
 Route::get('/', function () {
-    return view("welcome");
+    return view("/Users/welcome");
 });
 
 //Parameters
