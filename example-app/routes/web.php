@@ -66,6 +66,7 @@ Route::redirect("/test1", "/test", 301);
 //List routes
 //php artisan route:list
 
+
 //Routes with name
 Route::get('/user/profil', function(){
     return  "profil";
