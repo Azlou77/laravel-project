@@ -17,20 +17,34 @@ class UserController extends Controller
     */
     public function index()
     {
+
+    
         $data['users'] = User::orderBy('id','desc')->paginate(1);
+        /*Récupère toutes les tables de categories
+           select * from categories*/
+        $categories = DB::table('categories')->get();
+        dump($categories);
 
-        // $categories = DB::table('categories')->get();
-        // dump($categories);
-        // $livre = DB::table('categories')->where('label', 'livre')->first();
-        // dump($livre);
-        // $data['categories'] = Category::orderBy('id','desc')->paginate(5);
-        // $cat1 = DB::table('categories')->find(1);
-        // dump($cat1);
-        // $users = DB::table('users')->count();
-        // dump($users);
+        /*Même chose where= plus de précision label=livre récupère 
+         les premiers résultats*/
 
-        // dump($data);
-        // dd($data);
+        $livre = DB::table('categories')->where('label', 'livre')->first();
+        dump($livre);
+
+        /*Même chose récupère le model Category 
+         les 5 premiers résultats*/
+        $data['categories'] = Category::orderBy('id','desc')->paginate(5);
+
+        //Récupère les categories par id ici l'id est 1
+        $cat1 = DB::table('categories')->find(1);
+        dump($cat1);
+        $users = DB::table('users')->count();
+        dump($users);
+
+        dump($data);
+
+        //dd= dump + die
+        dd($data);
 
         return view('users.index', $data);
     }

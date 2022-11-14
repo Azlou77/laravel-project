@@ -1,13 +1,10 @@
 @extends ('layouts.app')
 
-@('section scrpits')
+@section ('scripts')
 <!--JS et CSS-->
-@endsection('content')
-
-<div>{{$user->email}}</div>
 @endsection
 
 @section('content')
-<x-alert/>
 <div>{{ $user->email }}</div>
 @endsection
+
